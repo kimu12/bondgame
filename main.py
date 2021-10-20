@@ -13,8 +13,9 @@ screen_height = 1000
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Practice window")
 
-# Font stuff (under contruction)
-font = pygame.font.Font('freesansbold.ttf', 32)
+def write_text(text, sprite):# Font stuff (under contruction)
+    font = pygame.font.Font('freesansbold.ttf', 32)
+    screen.blit(text, (sprite.pos_x, sprite.pos_y))
 
 # Define colors
 lgt_blue = (61, 226, 245)
