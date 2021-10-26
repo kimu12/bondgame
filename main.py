@@ -1,21 +1,22 @@
 # Import the pygame library and initialise the game engine
 import pygame, sys
 from sprite import *
-from random import randint
 pygame.init()
-
-
 
 
 # Game Screen
 screen_width = 1000
-screen_height = 1000
+screen_height = 700
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("Practice window")
+pygame.display.set_caption("iBond Level 1")
 
-def write_text(text, sprite):# Font stuff (under contruction)
-    font = pygame.font.Font('freesansbold.ttf', 32)
-    screen.blit(text, (sprite.pos_x, sprite.pos_y))
+def write_text(screen, text_string, font_size, pos_x, pos_y):#FIXME: Font stuff (under contruction)
+    font_name = pygame.font.match_font('arial', 'bold')
+    font = pygame.font.Font(font_name, font_size)
+    text_surface = font.render(text_string, True, BLACK)
+    text_rect = text_surface.get_rect()
+    text_rect.center = (pos_x, pos_y)
+    screen.blit(text_surface, text_rect)
 
 # Define colors
 lgt_blue = (61, 226, 245)
@@ -30,15 +31,29 @@ RED = ( 255, 0, 0)
 #This will be a list that will contain all the sprites for our game.
 ion_sprites_group = pygame.sprite.Group()
 
-ion_1xy = (randint(60, 940), randint(10, 900))
-
-ion_plus_1 = Ion_sprite(1, ion_1xy[0], ion_1xy[1]), Cat_puzzle(1, ion_1xy[0], ion_1xy[1])
+ion_plus_1 = Ion_sprite(1, screen_width, screen_height, screen)
 ion_sprites_group.add(ion_plus_1)
+ion_sprites_group.add(ion_plus_1.group)
 
-ion_neg_2 = Ion_sprite(-2, 300, 300), An_puzzle(-2, 300, 300)
+ion_plus_2 = Ion_sprite(2, screen_width, screen_height, screen)
+ion_sprites_group.add(ion_plus_2)
+ion_sprites_group.add(ion_plus_2.group)
+
+ion_plus_3 = Ion_sprite(3, screen_width, screen_height, screen)
+ion_sprites_group.add(ion_plus_3)
+ion_sprites_group.add(ion_plus_3.group)
+
+ion_neg_1 = Ion_sprite(-1, screen_width, screen_height, screen)
+ion_sprites_group.add(ion_neg_1)
+ion_sprites_group.add(ion_neg_1.group)
+
+ion_neg_2 = Ion_sprite(-2, screen_width, screen_height, screen)
 ion_sprites_group.add(ion_neg_2)
+ion_sprites_group.add(ion_neg_2.group)
 
-ion_plus_3 = Ion_sprite(-3, 300, 100)
+
+
+#ion_plus_3 = Ion_sprite(-3, 300, 100)
 
 
 
@@ -61,13 +76,11 @@ while True:
     # --- Drawing code should go here
         screen.fill(background_green)
 
-    # Draw sprites  <-- this isn't working
+    # Draw sprites
         ion_sprites_group.draw(screen)
 
-        #this is not a class object:
-        pygame.draw.rect(screen, lgt_red, (100, 200, 60, 40))
-        pygame.draw.rect(screen, background_green, (140, 210, 20, 20))
-    #text = font.render('Na+', True, WHITE)
+    # Write text
+        write_text(screen, 'IDK how to layer text onto sprite', 20, 200, 10)
 
         pygame.display.flip()
     #pygame.display.blit(text)
