@@ -42,7 +42,7 @@ class Ion_sprite(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()  #this draws rectangle around image from previous 2 lines
         self.rect = [pos_x, pos_y]
         self.group = pygame.sprite.Group() #creats a group for the puzzle features.  Whole group can be drawn as if its one object
-        ion_text = rand_ion(1)
+        ion_text = rand_ion(self.charge)
         #print(ion_text)  #debugging
 
         if self.charge >= 0:
