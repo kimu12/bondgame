@@ -43,8 +43,8 @@ class Ion_sprite(pygame.sprite.Sprite):
         self.rect = [pos_x, pos_y]
         self.group = pygame.sprite.Group() #creats a group for the puzzle features.  Whole group can be drawn as if its one object
         ion_text = rand_ion(1)
-        print(ion_text)
-        #self.group.add(Sprite_text(charge, pos_x, pos_y, ion_text, screen))
+        #print(ion_text)  #debugging
+
         if self.charge >= 0:
             y_shift = 10
             x_shift = 40
@@ -61,7 +61,6 @@ class Ion_sprite(pygame.sprite.Sprite):
                 self.group.add(An_puzzle(self.charge, shifted_pos_x, shifted_pos_y))
                 y_shift += 40
         self.group.add(Text(ion_text, 25, BLACK, pos_x, pos_y, charge))
-        #write_text(self.screen, ion_text, 50, pos_x, pos_y)
 
 class Text(pygame.sprite.Sprite):
     def __init__(self, text, size, color, pos_x, pos_y, charge):
