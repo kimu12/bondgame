@@ -1,6 +1,6 @@
 # Import the pygame library and initialise the game engine
 import pygame, sys
-from sprite import *
+from sprite import Ion_sprite
 pygame.init()
 
 
@@ -10,13 +10,6 @@ screen_height = 700
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("iBond Level 1")
 
-def write_text(screen, text_string, font_size, pos_x, pos_y):#FIXME: Font stuff (under contruction)
-    font_name = pygame.font.match_font('arial', 'bold')
-    font = pygame.font.Font(font_name, font_size)
-    text_surface = font.render(text_string, True, BLACK)
-    text_rect = text_surface.get_rect()
-    text_rect.center = (pos_x, pos_y)
-    screen.blit(text_surface, text_rect)
 
 # Define colors
 lgt_blue = (61, 226, 245)
@@ -51,10 +44,9 @@ ion_neg_2 = Ion_sprite(-2, screen_width, screen_height, screen)
 ion_sprites_group.add(ion_neg_2)
 ion_sprites_group.add(ion_neg_2.group)
 
-
-
-#ion_plus_3 = Ion_sprite(-3, 300, 100)
-
+ion_neg_3 = Ion_sprite(-3, screen_width, screen_height, screen)
+ion_sprites_group.add(ion_neg_3)
+ion_sprites_group.add(ion_neg_3.group)
 
 
 
@@ -80,12 +72,10 @@ while True:
         ion_sprites_group.draw(screen)
 
     # Write text
-        write_text(screen, 'IDK how to layer text onto sprite', 20, 200, 10)
+        #write_text(screen, 'IDK how to layer text onto sprite', 20, 200, 10)
 
         pygame.display.flip()
     #pygame.display.blit(text)
-
-
 
 
 
@@ -94,5 +84,3 @@ while True:
 
 # Once we have exited the main program loop we can stop the game engine:
 pygame.quit()
-
-#hi

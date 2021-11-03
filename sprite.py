@@ -60,7 +60,30 @@ class Ion_sprite(pygame.sprite.Sprite):
                 shifted_pos_y = pos_y + y_shift
                 self.group.add(An_puzzle(self.charge, shifted_pos_x, shifted_pos_y))
                 y_shift += 40
+        self.group.add(Text(ion_text, 25, BLACK, pos_x, pos_y, charge))
+        #write_text(self.screen, ion_text, 50, pos_x, pos_y)
 
+class Text(pygame.sprite.Sprite):
+    def __init__(self, text, size, color, pos_x, pos_y, charge):
+        super(Text, self).__init__()
+        font_name = pygame.font.match_font('arial', 'bold')
+        self.color = color
+        self.font = pygame.font.Font(font_name, size)
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.set(text, charge)
+
+    def set(self, text, charge):
+        y_shift = abs(charge) * 20
+        if charge < 0:
+            x_shift = 30
+        else:
+            if len(text) == 1:
+                x_shift = 20
+            else:
+                x_shift = 17
+        self.image = self.font.render(str(text), 1, self.color)
+        self.rect = self.image.get_rect(center = (self.pos_x + x_shift, self.pos_y + y_shift))
 
 class Cat_puzzle(pygame.sprite.Sprite):
     # This class layers a smaller rectangles to form puzzle pieces
@@ -86,35 +109,6 @@ class An_puzzle(pygame.sprite.Sprite):
         self.image.fill(lgt_blue)
         self.rect = self.image.get_rect()
         self.rect = [pos_x, pos_y]
-
-class Sprite_text(pygame.sprite.Sprite): #FIXME: This creats a rect but no text shows :(
-    #This class layers text onto the sprite
-    def __init__(self, charge, pos_x, pos_y, text_string, screen):
-        super().__init__()
-        self.screen = screen
-        self.charge = charge
-        self.pos_x = pos_x
-        self.pos_y = pos_y
-        self.text_string = text_string
-        self.font_size = 20
-
-        if self.charge > 0:
-            fill_color = lgt_red
-        else:
-            fill_color = lgt_blue
-
-        self.image = pygame.Surface([20, 20])
-        self.image.fill(fill_color)
-        self.rect = self.image.get_rect()
-        self.rect.center = [pos_x, pos_y]
-
-        self.font_name = pygame.font.match_font('arial', 'bold')
-        self.font = pygame.font.Font(self.font_name, self.font_size)
-        self.text_surface = self.font.render(self.text_string, True, BLACK)
-        self.text_rect = self.text_surface.get_rect()
-        self.text_rect.center = (pos_x, pos_y)
-        self.screen.blit(self.text_surface, self.text_rect)
-
 
 
 

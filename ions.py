@@ -1,6 +1,9 @@
 from random import randint
 
-cation1_list = ['Na', 'K', 'H', 'K', 'Cs']
+#FIXME: I am working on how to get python to write ^superscripts
+#cation1_list = ['Na \n{}'.format(SUPERSCRIPT PLUS), 'K \n{}'.format(SUPERSCRIPT PLUS), 'H \n{}'.format(SUPERSCRIPT PLUS), 'Rb \n{}'.format(SUPERSCRIPT PLUS), 'Cs \n{}'.format(SUPERSCRIPT PLUS)]]
+
+cation1_list = ['Na', 'K', 'H', 'Rb', 'Cs', 'Li']
 
 cation2_list = ['Be', 'Mg', 'Ca', 'Sr', 'Ba']
 
