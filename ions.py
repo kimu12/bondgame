@@ -1,7 +1,6 @@
 from random import randint
 
 #FIXME: I am working on how to get python to write ^superscripts
-#cation1_list = ['Na \n{}'.format(SUPERSCRIPT PLUS), 'K \n{}'.format(SUPERSCRIPT PLUS), 'H \n{}'.format(SUPERSCRIPT PLUS), 'Rb \n{}'.format(SUPERSCRIPT PLUS), 'Cs \n{}'.format(SUPERSCRIPT PLUS)]]
 
 ion_dic = {-1: ['\u207B',
                 ['F', 'fluorine', 'fluorine'],
@@ -47,7 +46,6 @@ ion_dic = {-1: ['\u207B',
                ['Li', 'lithium']]}
 
 
-
 def rand_ion(charge):
     group_len = len(ion_dic[charge])
     print(group_len)
@@ -74,7 +72,7 @@ def rand_ion(charge):
     if charge == -3:
         lst = anion3_list
 """
-
+#cation1_list = ['Na \n{}'.format(SUPERSCRIPT PLUS), 'K \n{}'.format(SUPERSCRIPT PLUS), 'H \n{}'.format(SUPERSCRIPT PLUS), 'Rb \n{}'.format(SUPERSCRIPT PLUS), 'Cs \n{}'.format(SUPERSCRIPT PLUS)]]
 
 """
 #retired dictionaries
