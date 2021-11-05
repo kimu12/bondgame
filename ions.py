@@ -55,27 +55,8 @@ def rand_ion(charge):
 
     return rand_ion
 
-"""
-    if charge == 1:
-        lst = cation1_list
 
-    if charge == 2:
-        lst = cation2_list
-
-    if charge == 3:
-        lst = cation3_list
-
-    if charge == -1:
-        dic = anion1_dict
-
-    if charge == -2:
-        lst =  anion2_list
-
-    if charge == -3:
-        lst = anion3_list
-"""
 #cation1_list = ['Na \n{}'.format(SUPERSCRIPT PLUS), 'K \n{}'.format(SUPERSCRIPT PLUS), 'H \n{}'.format(SUPERSCRIPT PLUS), 'Rb \n{}'.format(SUPERSCRIPT PLUS), 'Cs \n{}'.format(SUPERSCRIPT PLUS)]]
-
 """
 #retired dictionaries
 anion1_dict = {
