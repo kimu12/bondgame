@@ -2,6 +2,8 @@ from random import randint
 
 #FIXME: I am working on how to get python to write ^superscripts
 
+#nested dictionary where 'key'= ion charge,
+#value = nested list[ion charge superscript, ['symbol, 'element', 'name change'], [...]]
 ion_dic = {-1: ['\u207B',
                 ['F', 'fluorine', 'fluorine'],
                 ['Cl', 'chlorine', 'chloride'],
