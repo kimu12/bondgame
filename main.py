@@ -22,7 +22,7 @@ WHITE = ( 255, 255, 255)
 GREEN = ( 0, 255, 0)
 RED = ( 255, 0, 0)
 
-generate_starting_pos() #generates a semi-random list of starting positions for sprites
+generate_starting_pos() #generates a semi-random list of starting positions for sprites so they don't overlap
 
 #This will be a list that will contain all the sprites for our game.
 ion_sprites_group = pygame.sprite.Group()
