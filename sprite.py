@@ -1,6 +1,6 @@
 import pygame
 from random import randint
-from ions import rand_ion
+from ions import rand_ion, starting_pos_lst
 
 WHITE = (255, 255, 255)
 RED = (255, 0 , 0)
@@ -9,13 +9,6 @@ lgt_blue = (61, 226, 245)
 lgt_red = (232, 72, 72)
 background_green = (203, 247, 233)
 width = 60
-
-def random_pos(screen_width, screen_height):
-    x_buffer = 60
-    y_top_buffer = 10
-    y_bottom_buffer = 100
-    xy_pos = (randint(x_buffer, screen_width - x_buffer), randint(y_top_buffer, screen_height - y_bottom_buffer))
-    return xy_pos
 
 class Ion_sprite(pygame.sprite.Sprite):
     # This class represents ion puzzle piece sprite, and inherits from pygame's Sprite class
@@ -26,7 +19,7 @@ class Ion_sprite(pygame.sprite.Sprite):
         self.screen_width = screen_width
         self.screen_height = screen_height
         self.screen = screen
-        xy_pos = random_pos(screen_width, screen_height)
+        xy_pos = starting_pos_lst.pop(randint(0,len(starting_pos_lst)-1))
         pos_x = xy_pos[0]
         pos_y = xy_pos[1]
 
@@ -35,7 +28,7 @@ class Ion_sprite(pygame.sprite.Sprite):
         else:
             color = lgt_blue
 
-        height = abs(self.charge)*40
+        height = abs(self.charge)*40  #puzzle pieces are 60 wide by charge*40 long
 
         self.image = pygame.Surface([width, height]) #creates blank image
         self.image.fill(color) #fills blank image with color

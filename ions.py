@@ -1,7 +1,6 @@
 from random import randint
 
 #FIXME: I am working on how to get python to write ^superscripts
-
 #nested dictionary where 'key'= ion charge,
 #value = nested list[ion charge superscript, ['symbol, 'element', 'name change'], [...]]
 ion_dic = {-1: ['\u207B',
@@ -9,7 +8,7 @@ ion_dic = {-1: ['\u207B',
                 ['Cl', 'chlorine', 'chloride'],
                 ['Br', 'bromine', 'bromide'],
                 ['I', 'iodine', 'iodide'],
-                ['At', 'astatine', 'astine']],
+                ['At', 'astatine', 'astatine']],
 
            -2: ['\u00b2\u207B',
                 ['O', 'oxygen', 'oxide'],
@@ -47,6 +46,25 @@ ion_dic = {-1: ['\u207B',
                ['Cs', 'cesium'],
                ['Li', 'lithium']]}
 
+starting_pos_lst = []
+
+def generate_starting_pos():
+    for x in range(50, 920, 100):
+        for y in range(50, 600, 100):
+            random_xshift = randint(0,15)
+            random_yshift = randint(0, 20)
+            if random_xshift % 2:
+                pos_x = x + random_xshift
+            else:
+                pos_x = x - random_xshift
+            if random_yshift % 2:
+                pos_y = y + random_yshift
+            else:
+                pos_y = y - random_yshift
+            starting_pos_lst.append((pos_x, pos_y))
+    print(starting_pos_lst)
+
+
 
 def rand_ion(charge):
     group_len = len(ion_dic[charge])
@@ -54,6 +72,9 @@ def rand_ion(charge):
     rand_ion = ion_dic[charge][randint(1, group_len-1)][0]+ion_dic[charge][0]
 
     return rand_ion
+
+#def name_compound(cation, anion):
+    #name =
 
 
 #cation1_list = ['Na \n{}'.format(SUPERSCRIPT PLUS), 'K \n{}'.format(SUPERSCRIPT PLUS), 'H \n{}'.format(SUPERSCRIPT PLUS), 'Rb \n{}'.format(SUPERSCRIPT PLUS), 'Cs \n{}'.format(SUPERSCRIPT PLUS)]]
