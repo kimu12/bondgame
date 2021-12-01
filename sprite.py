@@ -10,6 +10,21 @@ lgt_red = (232, 72, 72)
 background_green = (203, 247, 233)
 width = 60
 
+class Ion_group(pygame.sprite.Group):
+    def __init__(self):
+        super().__init__()
+        self.click = False
+
+    def update(self):
+        print("hello")
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        for sprite in self:
+            if self.click:
+                sprite.pos_x = mouse_x
+                sprite.pos_y = mouse_y
+                sprite.update()
+                print("move")
+
 class Ion_sprite(pygame.sprite.Sprite):
     # This class represents ion puzzle piece sprite, and inherits from pygame's Sprite class
 
@@ -20,8 +35,8 @@ class Ion_sprite(pygame.sprite.Sprite):
         self.screen_height = screen_height
         self.screen = screen
         xy_pos = starting_pos_lst.pop(randint(0,len(starting_pos_lst)-1))
-        pos_x = xy_pos[0]
-        pos_y = xy_pos[1]
+        self.pos_x = xy_pos[0]
+        self.pos_y = xy_pos[1]
 
         if self.charge >= 0:
             color = lgt_red
@@ -33,7 +48,7 @@ class Ion_sprite(pygame.sprite.Sprite):
         self.image = pygame.Surface([width, height]) #creates blank image
         self.image.fill(color) #fills blank image with color
         self.rect = self.image.get_rect()  #this draws rectangle around image from previous 2 lines
-        self.rect = [pos_x, pos_y]
+        self.rect = [self.pos_x, self.pos_y]
         self.group = pygame.sprite.Group() #creats a group for the puzzle features.  Whole group can be drawn as if its one object
         ion_text = rand_ion(self.charge)
         #print(ion_text)  #debugging
@@ -42,18 +57,21 @@ class Ion_sprite(pygame.sprite.Sprite):
             y_shift = 10
             x_shift = 40
             for puz in range (abs(charge)):
-                shifted_pos_y = pos_y + y_shift
-                self.group.add(Cat_puzzle(pos_x + x_shift, shifted_pos_y))
+                shifted_pos_y = self.pos_y + y_shift
+                self.group.add(Cat_puzzle(self.pos_x + x_shift, shifted_pos_y))
                 y_shift += 40
         else:
             x_shift = -20
             y_shift = 10
             for puz in range(abs(charge)):
-                shifted_pos_x = pos_x + x_shift
-                shifted_pos_y = pos_y + y_shift
+                shifted_pos_x = self.pos_x + x_shift
+                shifted_pos_y = self.pos_y + y_shift
                 self.group.add(An_puzzle(self.charge, shifted_pos_x, shifted_pos_y))
                 y_shift += 40
-        self.group.add(Text(ion_text, 25, BLACK, pos_x, pos_y, charge))
+        self.group.add(Text(ion_text, 25, BLACK, self.pos_x, self.pos_y, charge))
+
+    def update(self):
+        self.rect = [self.pos_x, self.pos_y]
 
 class Text(pygame.sprite.Sprite):
     def __init__(self, text, size, color, pos_x, pos_y, charge):
@@ -77,6 +95,9 @@ class Text(pygame.sprite.Sprite):
         self.image = self.font.render(str(text), 1, self.color)
         self.rect = self.image.get_rect(center = (self.pos_x + x_shift, self.pos_y + y_shift))
 
+    def update(self):
+        self.rect = [self.pos_x, self.pos_y]
+
 class Cat_puzzle(pygame.sprite.Sprite):
     # This class layers a smaller rectangles to form puzzle pieces
     def __init__(self, pos_x, pos_y):
@@ -88,6 +109,9 @@ class Cat_puzzle(pygame.sprite.Sprite):
         self.image.fill(background_green)
         self.rect = self.image.get_rect()
         self.rect = [pos_x, pos_y]
+
+    def update(self):
+        self.rect = [self.pos_x, self.pos_y]
 
 class An_puzzle(pygame.sprite.Sprite):
     # This class layers a smaller rectangles to form puzzle pieces
@@ -102,11 +126,6 @@ class An_puzzle(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect = [pos_x, pos_y]
 
-
-
-
-
-
-
-
+    def update(self):
+        self.rect = [self.pos_x, self.pos_y]
 
