@@ -1,6 +1,6 @@
 # Import the pygame library and initialise the game engine
 import pygame, sys
-from sprite import Ion_sprite
+from sprite import Ion_sprite, Ion_group
 from ions import generate_starting_pos
 pygame.init()
 
@@ -25,51 +25,15 @@ RED = ( 255, 0, 0)
 generate_starting_pos() #generates a semi-random list of starting positions for sprites so they don't overlap
 
 #This will be a list that will contain all the sprites for our game.
-ion_sprites_group = pygame.sprite.Group()
-#FIXME need to define the ion car names outside of the dict,
-# #then have some fuction that is called do the .add methods
-"""
-ion_dic = {
-    1: [[ion_plus_1a = Ion_sprite(1, screen_width, screen_height, screen),
-                      ion_sprites_group.add(ion_plus_1a),
-                      ion_sprites_group.add(ion_plus_1a.group)],
-        [ion_plus_1b = Ion_sprite(1, screen_width, screen_height, screen),
-                      ion_sprites_group.add(ion_plus_1b),
-                      ion_sprites_group.add(ion_plus_1b.group)],
-        [ion_plus_1c = Ion_sprite(1, screen_width, screen_height, screen),
-                      ion_sprites_group.add(ion_plus_1c),
-                      ion_sprites_group.add(ion_plus_1c.group)],
-        [ion_plus_1d = Ion_sprite(1, screen_width, screen_height, screen),
-                       ion_sprites_group.add(ion_plus_1d),
-                       ion_sprites_group.add(ion_plus_1d.group)]],
-    2: [[ion_plus_2a = Ion_sprite(2, screen_width, screen_height, screen),
-                      ion_sprites_group.add(ion_plus_2a),
-                      ion_sprites_group.add(ion_plus_2a.group)],
-        [ion_plus_2b = Ion_sprite(2, screen_width, screen_height, screen),
-                      ion_sprites_group.add(ion_plus_2b),
-                      ion_sprites_group.add(ion_plus_2b.group)]],
-    -1: [[ion_neg_1a = Ion_sprite(-1, screen_width, screen_height, screen),
-                      ion_sprites_group.add(ion_neg_1a),
-                      ion_sprites_group.add(ion_neg_1a.group)],
-        [ion_neg_1b = Ion_sprite(-1, screen_width, screen_height, screen),
-                      ion_sprites_group.add(ion_neg_1b),
-                      ion_sprites_group.add(ion_neg_1b.group)]]
-}
-"""
-def create_sprites():
-    new_sprite = ion_dic[2][0]
-    new_sprite[0]
-    new_sprite[1]
-    new_sprite[2]
+ion_sprites_group = Ion_group()
 
 ion_plus_1 = Ion_sprite(1, screen_width, screen_height, screen)
 ion_sprites_group.add(ion_plus_1)
 ion_sprites_group.add(ion_plus_1.group)
 
-#create_sprites()
-#ion_plus_2 = Ion_sprite(2, screen_width, screen_height, screen)
-#ion_sprites_group.add(ion_plus_2)
-#ion_sprites_group.add(ion_plus_2.group)
+ion_plus_2 = Ion_sprite(2, screen_width, screen_height, screen)
+ion_sprites_group.add(ion_plus_2)
+ion_sprites_group.add(ion_plus_2.group)
 
 ion_plus_3 = Ion_sprite(3, screen_width, screen_height, screen)
 ion_sprites_group.add(ion_plus_3)
@@ -102,7 +66,7 @@ while True:
         pygame.display.flip()
 
     # --- Game logic should go here
-        #ion_sprites_group.update()
+        ion_sprites_group.update()
 
     # --- Drawing code should go here
         screen.fill(background_green)
