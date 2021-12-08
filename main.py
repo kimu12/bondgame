@@ -75,10 +75,7 @@ while True:
         ion_sprites_group.draw(screen)
 
     # Write text
-        #write_text(screen, 'IDK how to layer text onto sprite', 20, 200, 10)
-
         pygame.display.flip()
-    #pygame.display.blit(text)
 
 
 
