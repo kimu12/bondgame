@@ -4,7 +4,7 @@ from random import randint
 #nested dictionary where 'key'= ion charge,
 #value = nested list[ion charge superscript, ['symbol, 'element', 'name change'], [...]]
 ion_dic = {-1: ['\u207B',
-                ['F', 'fluorine', 'fluorine'],
+                ['F', 'fluorine', 'fluoride'],
                 ['Cl', 'chlorine', 'chloride'],
                 ['Br', 'bromine', 'bromide'],
                 ['I', 'iodine', 'iodide'],
