@@ -36,13 +36,13 @@ ion_dic = {-1: ['\u207B',
                ['Mg',  'magnesium'],
                ['Ca',  'hydrogen'],
                ['Sr',  'strontium'],
-               ['Cs',  'cesium']],
+               ['Ba',  'barium']],
 
            1: ['\u207A',
                ['Na', 'sodium'],
                ['K', 'potassium'],
                ['H', 'hydrogen'],
-               ['Rb' 'rubidium'],
+               ['Rb', 'rubidium'],
                ['Cs', 'cesium'],
                ['Li', 'lithium']]}
 
