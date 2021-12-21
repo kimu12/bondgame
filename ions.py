@@ -1,6 +1,4 @@
 from random import randint
-
-#FIXME: I am working on how to get python to write ^superscripts
 #nested dictionary where 'key'= ion charge,
 #value = nested list[ion charge superscript, ['symbol, 'element', 'name change'], [...]]
 ion_dic = {-1: ['\u207B',
@@ -62,13 +60,13 @@ def generate_starting_pos():
             else:
                 pos_y = y - random_yshift
             starting_pos_lst.append((pos_x, pos_y))
-    print(starting_pos_lst)
+    #print(starting_pos_lst) #debugging
 
 
 
 def rand_ion(charge):
     group_len = len(ion_dic[charge])
-    print(group_len)
+    #print(group_len) #debugging
     rand_ion = ion_dic[charge][randint(1, group_len-1)][0]+ion_dic[charge][0]
 
     return rand_ion
