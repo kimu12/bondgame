@@ -75,13 +75,17 @@ while True:
             if event.button == 1: #'1' - Is left mousebutton being clicked?
                 for object in ion_sprites_group:
                     print(type(object))
+                #print (ion_sprites_group) --> this yields "<Group(24 sprites)>"
+                #print (type(ion_sprites_group)) --> this yields "<class 'pygame.sprite.Group'>"
                 for i, puzzle_piece in enumerate(ion_sprites_group):
-                    if type(puzzle_piece) != int: #Delete this 'if' statement line once the int is nolonger sneaking into ion_sprites_group
-                        #FIXME: AttributeError: 'list' object has no attribute 'collidepoint'
-                        if puzzle_piece.rect.collidepoint(event.pos):
-                            selected = i
-                            selected_offset_x = puzzle_piece.x - event.pos[0]
-                            selected_offset_y = puzzle_piece.y - event.pos[1]
+                    #if type(puzzle_piece) != int: #Delete this 'if' statement line once the int is nolonger sneaking into ion_sprites_group
+                    #FIXME: AttributeError: 'list' object has no attribute 'collidepoint': puzzle_piece.rect[1].collidepoint(event.pos):
+                    #so this object is a list... when "puzzle_piece.rect[0].collidepoint(event.pos):", assuming 1st item in list is rect object...
+                    #program closes 'Process finished with exit code 1' when clicking on sprite...
+                    if puzzle_piece.rect.collidepoint(event.pos):
+                        selected = i
+                        selected_offset_x = puzzle_piece.x - event.pos[0]
+                        selected_offset_y = puzzle_piece.y - event.pos[1]
 
         elif event.type == pygame.MOUSEBUTTONUP:
             if event.button == 1:
@@ -90,6 +94,7 @@ while True:
         elif event.type == pygame.MOUSEMOTION:
             if selected is not None:  # selected can be `0` so `is not None` is required
                 # move object
+                #FIXME: Class 'Group' does not define '__getitem__', so the [] operator cannot be used on its instances
                 ion_sprites_group[selected].x = event.pos[0] + selected_offset_x
                 ion_sprites_group[selected].y = event.pos[1] + selected_offset_y
 
