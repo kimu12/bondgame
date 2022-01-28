@@ -1,5 +1,7 @@
 # Import the pygame library and initialise the game engine
 import pygame, sys
+
+import sprite
 from sprite import Ion_sprite, Ion_group
 from ions import generate_starting_pos
 pygame.init()
@@ -96,15 +98,17 @@ while True:
             #print (ion_sprites_group) --> this yields "<Group(24 sprites)>"
             #print (type(ion_sprites_group)) --> this yields "<class 'pygame.sprite.Group'>"
             #for i, puzzle_piece in enumerate(ion_sprites_group):
-            for puzzle_piece in ion_sprites_groups:
-                #if type(puzzle_piece) != int: #Delete this 'if' statement line once the int is nolonger sneaking into ion_sprites_group
-                #FIXME: AttributeError: 'list' object has no attribute 'collidepoint': puzzle_piece.rect[1].collidepoint(event.pos):
-                #so this object is a list... when "puzzle_piece.rect[0].collidepoint(event.pos):", assuming 1st item in list is rect object...
-                #program closes 'Process finished with exit code 1' when clicking on sprite...
-                if puzzle_piece.rect.collidepoint(event.pos):
-                    # selected = i
-                    selected_offset_x = puzzle_piece.x - event.pos[0]
-                    selected_offset_y = puzzle_piece.y - event.pos[1]
+            for i, group in enumerate(ion_sprites_groups):
+                for puzzle_piece in group:
+                    #if type(puzzle_piece) != int: #Delete this 'if' statement line once the int is nolonger sneaking into ion_sprites_group
+                    #FIXME: AttributeError: 'list' object has no attribute 'collidepoint': puzzle_piece.rect[1].collidepoint(event.pos):
+                    #so this object is a list... when "puzzle_piece.rect[0].collidepoint(event.pos):", assuming 1st item in list is rect object...
+                    #program closes 'Process finished with exit code 1' when clicking on sprite...
+                    print(type(puzzle_piece))
+                    if puzzle_piece.rect.collidepoint(event.pos):
+                        selected = i
+                        selected_offset_x = puzzle_piece.pos_x - event.pos[0]
+                        selected_offset_y = puzzle_piece.pos_y - event.pos[1]
 
     elif event.type == pygame.MOUSEBUTTONUP:
         if event.button == 1:
@@ -114,8 +118,13 @@ while True:
         if selected is not None:  # selected can be `0` so `is not None` is required
             # move object
             #FIXME: Class 'Group' does not define '__getitem__', so the [] operator cannot be used on its instances
-            ion_sprites_group[selected].x = event.pos[0] + selected_offset_x
-            ion_sprites_group[selected].y = event.pos[1] + selected_offset_y
+            print("to move")
+            for piece in ion_sprites_groups[selected]:
+                # if type(piece) is Ion_sprite or type(piece) is sprite.Text:
+                print("moving", piece)
+                piece.pos_x = event.pos[0] + selected_offset_x + piece.offset_x
+                piece.pos_y = event.pos[1] + selected_offset_y + piece.offset_y
+            print("moved")
 
 
     pygame.display.flip()
